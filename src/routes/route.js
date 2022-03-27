@@ -1,24 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const authorController = require("../controllers/authorController")
-const blogController = require("../controllers/blogsController")
-const middleWare = require("../middlewares/Auth.js")
+const internController = require("../controllers/internController")
+const collegeController = require("../controllers/collegeController")
 
-//API's-creating Author
-router.post("/authors", authorController.createAuthor)
 
-router.post("/login", authorController.authorLogin);
 
-//API's Blog
-router.post("/blogs", middleWare.autherAuthentication, blogController.createBlog);
 
-router.get("/blogs", middleWare.autherAuthentication, blogController.getSpecificAllBlogs);
+router.post("/functionup/colleges",collegeController.createCollege)
 
-router.put("/blogs/:blogId", middleWare.authorAuthorization, blogController.updateBlog);
+router.post("/functionup/interns",internController.createIntern);
 
-router.delete("/blogs/:blogId", middleWare.authorAuthorization, blogController.deleteBlog);
-
-router.delete("/blogs", middleWare.authorAuthorization, blogController.deletedByQueryParams);
+router.get("/functionup/collegeDetails",collegeController.collegeDetails);
 
 
 module.exports = router;
